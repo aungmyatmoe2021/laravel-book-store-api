@@ -1,0 +1,23 @@
+info:
+  name: 05-create-category
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: http://127.0.0.1:8000/api/categories
+  body:
+    type: json
+    data: |-
+      {
+        "name":"Testing",
+        "description":"This is Testing"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

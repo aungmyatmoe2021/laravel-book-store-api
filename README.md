@@ -1,3 +1,74 @@
+# Laravel Book Store API With Cloudinary Integration)
+
+## Objective
+
+The objective of this assignment is to build a Book Store RESTful API that integrates with Cloudinary for professional media management. You will focus on handling file uploads, managing storage cleanup (deleting old files), and organizing API responses.
+
+## Data Models & Migrations
+
+You must generate migrations and models for the following schema:
+
+Table: books 
+
+|Column|Type|Constraints|
+|------|----|-----------|
+|id|BigInt|Primary Key|
+|title|string ||
+|cover_image_url|string||
+|description|string||
+|category_id|BigInt|Foreign Key|
+|created_at|datetime||
+|updated_at|datetime||
+
+[!NOTE] You should also have a Category model (id, name) to establish a One-to-Many relationship (A category has many books).
+
+## Factories & Database Seeding
+
+- To facilitate testing, implement the following:
+    - CategoryFactory: Generate at least 5 book categories (e.g., Fiction, Sci-Fi, Programming).
+    - BookFactory: Generate dummy titles and descriptions. For the cover_image_url, you may use a placeholder image URL or leave it null for seeded data.
+    - DatabaseSeeder: Seed 5 categories and 20 books.
+
+## Implementation Requirements
+
+- A. Cloudinary Integration (The Core Task)
+    - Store (Upload): When creating a book, upload the cover_image to Cloudinary in a folder named rootaccess_bookstore/covers.
+    - Update & Cleanup: If a user updates a book and uploads a new cover, you must delete the old image from Cloudinary using its public_id before saving the new one.
+    - Destroy: When a book is deleted from the database, the associated image must also be deleted from Cloudinary.
+- B. Routing & Controllers
+    - Create a BookController with the following endpoints:
+    - GET /api/books — List all books (with Category details and Pagination).
+    - POST /api/books — Create a book with a cover image upload.
+    - GET /api/books/{id} — Show specific book details.
+    - POST /api/books/{id}?_method=PUT — Update book details and/or cover image.
+    - DELETE /api/books/{id} — Delete book and its image from Cloudinary.
+- C. Searching & Pagination
+    - Implement a search to find books by title or category name.
+    - Implement pagination to get a list of all books.
+
+## Request Validation
+
+- Use a Form Request class with the following rules:
+    - title: required|string|max:255
+    - category_id: required|exists:categories,id
+    - cover_image: image|mimes:jpeg,png,jpg|max:2048 (Max 2MB)
+
+## API Response Format
+
+- All responses must be JSON:
+    - Success: 200 OK or 201 Created.
+    - Error: 422 Unprocessable Entity (for validation) or 404 Not Found.
+
+## Deliverables
+
+- Laravel Project Source Code on GitHub.
+- Cloudinary Service/Logic Logic: Evidence of how you handled the upload/delete logic (e.g., a dedicated Service class).
+- Bruno Collection: Exported file to test all endpoints.
+
+#
+#
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

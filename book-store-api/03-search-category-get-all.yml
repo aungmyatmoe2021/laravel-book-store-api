@@ -1,0 +1,26 @@
+info:
+  name: 03-search-category-get-all
+  type: http
+  seq: 3
+
+http:
+  method: GET
+  url: http://127.0.0.1:8000/api/categories?search=ut&per_page=1&page=1
+  params:
+    - name: search
+      value: ut
+      type: query
+    - name: per_page
+      value: "1"
+      type: query
+    - name: page
+      value: "1"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
