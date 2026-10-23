@@ -1,0 +1,16 @@
+info:
+  name: 06-update-book
+  type: http
+  seq: 13
+
+http:
+  method: PUT
+  url: http://127.0.0.1:8000/api/books/51
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
